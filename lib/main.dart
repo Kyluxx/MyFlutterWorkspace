@@ -48,13 +48,23 @@ class _RegistrationFormState extends State<RegistrationForm> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: const Text('Form Registrasi')),
+      backgroundColor: Colors.black,
+      appBar: AppBar(
+        title: const Text(
+          'Form Registrasi', 
+          style: TextStyle(color: Colors.white)
+        ),
+        backgroundColor: Colors.black,
+        ),
       body: Padding(
         padding: const EdgeInsets.all(20),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text('Nama'),
+            const Text(
+              'Nama',
+              style: TextStyle(color: Colors.white)
+              ),
             TextField(
               controller: nameController,
               decoration: const InputDecoration(
@@ -62,7 +72,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
             ),
             const SizedBox(height: 16),
-            const Text('Email'),
+            const Text(
+              'Email',
+              style: TextStyle(color: Colors.white)
+              ),
             TextField(
               controller: emailController,
               keyboardType: TextInputType.emailAddress,
@@ -71,7 +84,10 @@ class _RegistrationFormState extends State<RegistrationForm> {
               ),
             ),
             const SizedBox(height: 16),
-            const Text('Password'),
+            const Text(
+              'Password',
+              style: TextStyle(color: Colors.white)
+              ),
             TextField(
               controller: passwordController,
               obscureText: true,
@@ -84,7 +100,16 @@ class _RegistrationFormState extends State<RegistrationForm> {
               width: double.infinity,
               child: ElevatedButton(
                 onPressed: handleSubmit,
-                child: const Text('Daftar'),
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: Colors.deepPurple,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10), 
+                  ),
+                ),
+                child: const Text(
+                  'Daftar',
+                  style: TextStyle(color: Colors.white, fontSize: 16),
+                  ),
               ),
             ),
           ],
