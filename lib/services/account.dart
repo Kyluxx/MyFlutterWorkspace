@@ -8,7 +8,7 @@ class AccountService {
   static Future<ResUserModel> createAccount(name, email, password) async {
     print('name: $name, email: $email, password: $password');
     final response = await http.post(
-      Uri.parse('${Api.baseUrl}/register'),
+      Uri.parse(Api.registerUrl),
       headers: {'Content-Type': 'application/json'},
       body: jsonEncode({
         'username': name,
@@ -18,6 +18,19 @@ class AccountService {
     );
 
     print(response.body);
+    return ResUserModel.fromJson(jsonDecode(response.body));
+  }
+
+  static Future<ResUserModel> login(identifier, password, isEmail) async {
+    final response = await http.post(
+      Uri.parse(Api.loginUrl),
+      headers: {'Content-Type': 'application/json'},
+      body: jsonEncode({
+        'identifier': identifier,
+        'password': password,
+        'isEmail': isEmail,
+      }),
+    );
     return ResUserModel.fromJson(jsonDecode(response.body));
   }
 }

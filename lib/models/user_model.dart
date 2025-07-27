@@ -28,6 +28,7 @@ class ResUserModel {
   }
 }
 
+
 class UserModel {
   final int id;
   final String name;
@@ -55,4 +56,36 @@ class UserModel {
       'email': email,
     };
   }
+}
+
+
+class LoginRequest {
+  final String identifier; // username OR email
+  final String password;
+
+  LoginRequest({required this.identifier, required this.password});
+
+  Map<String, dynamic> toJson() => {
+    'identifier': identifier,
+    'password': password,
+  };
+}
+
+
+class SignUpRequest {
+  final String name;
+  final String email;
+  final String password;
+
+  SignUpRequest({
+    required this.name,
+    required this.email,
+    required this.password,
+  });
+
+  Map<String, dynamic> toJson() => {
+    'name': name,
+    'email': email,
+    'password': password,
+  };
 }
