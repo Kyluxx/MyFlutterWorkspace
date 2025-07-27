@@ -16,6 +16,8 @@ class LoginVm with ChangeNotifier {
     notifyListeners();
   }
 
+  void onTapForgotPassword() {}
+
   void toggleVisibility() {
     hidePassword = !hidePassword;
     notifyListeners();
@@ -46,5 +48,11 @@ class LoginVm with ChangeNotifier {
     resCodeCallback(res.messages, onSuccess: onSuccess, onFail: onFail);
   }
 
-  void onTapForgotPassword() {}
+
+  @override
+  void dispose() {
+    identifierController.dispose();
+    passwordController.dispose();
+    super.dispose();
+  }
 }

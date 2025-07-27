@@ -6,7 +6,6 @@ import '../models/user_model.dart';
 import '../services/account.dart';
 
 class RegisterVm with ChangeNotifier {
-  UserModel? _currentUser;
 
   final usernameController = TextEditingController();
   final emailController = TextEditingController();
@@ -14,8 +13,6 @@ class RegisterVm with ChangeNotifier {
   final verifyPasswordController = TextEditingController();
 
   bool hidePassword = true;
-
-  UserModel? get currentUser => _currentUser;
 
   void toggleVisibility() {
     hidePassword = !hidePassword;
@@ -68,10 +65,5 @@ class RegisterVm with ChangeNotifier {
     emailController.dispose();
     passwordController.dispose();
     super.dispose();
-  }
-
-  void updateCurrentUser(UserModel data) {
-    _currentUser = data;
-    notifyListeners();
   }
 }
