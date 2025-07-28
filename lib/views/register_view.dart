@@ -80,6 +80,8 @@ class RegisterView extends StatelessWidget {
                         CAlert(
                           title: CString.success,
                           message: msg,
+                          showCancel: true,
+                          onConfirm: () => Navigator.pushNamed(context, '/login'),
                         ).show(context);
                       },
                       onFail: ({required String msg}) {
