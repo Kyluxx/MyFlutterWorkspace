@@ -6,7 +6,7 @@ void resCodeCallback(
   required ResCallback onSuccess,
   required ResCallback onFail,
 }) {
-  if (resMsg.status == "200") {
+  if (resMsg.status == "200" || resMsg.status == "201") {
     onSuccess(msg: resMsg.msg);
   } else {
     onFail(msg: resMsg.msg);

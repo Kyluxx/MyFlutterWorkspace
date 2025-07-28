@@ -60,6 +60,7 @@ class RegisterVm with ChangeNotifier {
   }
 
   @override
+
   void dispose() {
     usernameController.dispose();
     emailController.dispose();

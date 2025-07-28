@@ -40,6 +40,7 @@ class RegisterView extends StatelessWidget {
                   CTextFField(
                     label: 'Email',
                     controller: regvm.emailController,
+                    keyboardType: TextInputType.emailAddress,
                   ),
                   CTextFField(
                     label: 'Password',
