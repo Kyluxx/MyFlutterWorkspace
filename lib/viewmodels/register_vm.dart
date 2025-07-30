@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/global/navigator.dart';
 import 'package:flutter_application_1/global/regex.dart';
 import 'package:flutter_application_1/global/response.dart';
 import 'package:flutter_application_1/global/types.dart';
+import 'package:flutter_application_1/views/widgets/loadingoverlay.dart';
 import '../services/account.dart';
 
 class RegisterVm with ChangeNotifier {
@@ -25,6 +27,7 @@ class RegisterVm with ChangeNotifier {
   Future<void> onTapSignUp({
     required ResCallback onSuccess,
     required ResCallback onFail,
+    required BuildContext ctx,
   }) async {
     final username = usernameController.text;
     final email = emailController.text.trim();
@@ -56,10 +59,13 @@ class RegisterVm with ChangeNotifier {
     }
 
     try {
+      LoadingOverlay().show(ctx);
       final res = await AccountService.createAccount(username, email, password);
+      ctxPop(ctx);
       print(res);
       resCodeCallback(res.messages, onSuccess: onSuccess, onFail: onFail);
     } catch (e, s) {
+      ctxPop(ctx);
       print('ERROR IN SIGNUP: $e');
       print('STACK: $s');
     }

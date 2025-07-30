@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/views/home_view.dart';
 import 'package:flutter_application_1/views/login_view.dart';
 import '../views/register_view.dart';
+import '../views/widgets/splashscreen.dart';
 
 final Map<String, Widget Function(BuildContext)> routeMap = {
-  // '/': (context) => const SplashScreenPage(),
+  '/': (context) => const SplashScreen(),
   '/login': (context) => const LoginView(),
   '/register': (context) => const RegisterView(),
+  '/home': (context) => const HomeView(),
 };
 
 class Routes {

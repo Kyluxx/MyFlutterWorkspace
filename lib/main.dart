@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
       // home: RegisterView(),
       debugShowCheckedModeBanner: false,
       onGenerateRoute: Routes.generateRoute,
-      initialRoute: '/register', 
+      initialRoute: '/', 
     );
   }
 }

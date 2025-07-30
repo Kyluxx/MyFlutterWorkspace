@@ -23,96 +23,113 @@ class LoginView extends StatelessWidget {
             leading: Padding(
               padding: const EdgeInsets.only(left: 20.0),
               child: IconButton(
-                icon: const Icon(
-                  Icons.arrow_back_ios,
-                  color: Colors.white,
-                ),
+                icon: const Icon(Icons.arrow_back_ios, color: Colors.white),
                 onPressed: () => Navigator.pop(context),
               ),
             ),
           ),
           body: SafeArea(
-            child: Padding(
-              padding: const EdgeInsets.all(20.0),
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  const Text(
-                    'LOG IN',
-                    style: TextStyle(
-                      color: CColor.primaryColor,
-                      fontFamily: 'NicoMoji',
-                      fontSize: 32,
-                    ),
-                  ),
-                  SizedBox(height: 20),
-                  CTextFField(label: 'Username or Email', controller: logvm.identifierController),
-                  CTextFField(
-                    label: 'Password',
-                    controller: logvm.passwordController,
-                    obscureText: logvm.hidePassword,
-                    suffixIcon: InkWell(
-                      borderRadius: BorderRadius.circular(100),
-                      onTap: logvm.toggleVisibility,
-                      child: Icon(
-                        logvm.hidePassword
-                            ? Icons.visibility_off
-                            : Icons.visibility,
-                        color: Colors.white,
-                      ),
-                    ),
-                  ),
-                  CheckboxListTile(
-                    title: const Text(
-                      'Remember Me',
-                      style: TextStyle(color: Colors.white),
-                    ),
-                    controlAffinity: ListTileControlAffinity.leading,
-                    contentPadding: EdgeInsets.zero,
-                    value: logvm.rememberMe,
-                    checkColor: Colors.white,
-                    activeColor: CColor.primaryColor,
-                    onChanged: (bool? val) => logvm.toggleRememberMe(val),
-                  ),
-                  SizedBox(height: 20),
-                  CButton(
-                    label: 'LOG IN', 
-                    onTap: () => logvm.onTapLogIn(
-                      onSuccess: ({required String msg}) {
-                        CAlert(
-                          title: CString.success,
-                          message: msg,
-                        ).show(context);
-                      },
-                      onFail: ({required String msg}) {
-                        CAlert(
-                          title: CString.fail,
-                          message: msg,
-                        ).show(context);
-                      },
-                    ),
-                    useNicoMoji: true,
-                    fontSize: 24,
-                  ),
-                  SizedBox(height: 10),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.end,
+            child: Stack(
+              children: [
+                Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: [
-                      TextButton(
-                        onPressed: () => logvm.onTapForgotPassword(),
-                        child: const Text(
-                          'Forgot Password?',
-                          style: TextStyle(
-                            color: CColor.primaryColor,
-                            fontWeight: FontWeight.w400,
+                      const Text(
+                        'LOG IN',
+                        style: TextStyle(
+                          color: CColor.primaryColor,
+                          fontFamily: 'NicoMoji',
+                          fontSize: 32,
+                        ),
+                      ),
+                      SizedBox(height: 20),
+                      CTextFField(
+                        label: 'Username or Email',
+                        controller: logvm.identifierController,
+                      ),
+                      CTextFField(
+                        label: 'Password',
+                        controller: logvm.passwordController,
+                        obscureText: logvm.hidePassword,
+                        suffixIcon: InkWell(
+                          borderRadius: BorderRadius.circular(100),
+                          onTap: logvm.toggleVisibility,
+                          child: Icon(
+                            logvm.hidePassword
+                                ? Icons.visibility_off
+                                : Icons.visibility,
+                            color: Colors.white,
                           ),
                         ),
                       ),
+                      CheckboxListTile(
+                        title: const Text(
+                          'Remember Me',
+                          style: TextStyle(color: Colors.white),
+                        ),
+                        controlAffinity: ListTileControlAffinity.leading,
+                        contentPadding: EdgeInsets.zero,
+                        value: logvm.rememberMe,
+                        checkColor: Colors.white,
+                        activeColor: CColor.primaryColor,
+                        onChanged: (bool? val) => logvm.toggleRememberMe(val),
+                      ),
+                      SizedBox(height: 20),
+                      CButton(
+                        label: 'LOG IN',
+                        onTap: () => logvm.onTapLogIn(
+                          ctx: context,
+                          onSuccess: ({required String msg}) {
+                            Navigator.pushNamedAndRemoveUntil(
+                              context,
+                              '/home',
+                              (route) => false,
+                            );
+                          },
+                          onFail: ({required String msg}) {
+                            CAlert(
+                              title: CString.fail,
+                              message: msg,
+                            ).show(context);
+                          },
+                        ),
+                        useNicoMoji: true,
+                        fontSize: 24,
+                      ),
+                      SizedBox(height: 10),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.end,
+                        children: [
+                          TextButton(
+                            onPressed: () => logvm.onTapForgotPassword(),
+                            child: const Text(
+                              'Forgot Password?',
+                              style: TextStyle(
+                                color: CColor.primaryColor,
+                                fontWeight: FontWeight.w400,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
                     ],
                   ),
-                ],
-              ),
+                ),
+                Positioned(
+                  bottom: 20,
+                  left: 0,
+                  right: 0,
+                  child: Center(
+                    child: const Text(
+                      'smart with cleverse',
+                      style: TextStyle(color: Colors.white),
+                    ),
+                  ),
+                ),
+              ],
             ),
           ),
         );

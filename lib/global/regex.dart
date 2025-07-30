@@ -3,6 +3,10 @@ class Regex {
   static final passwordStrength = RegExp(r'^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[\W_]).{8,}$');
   
   static bool isEmail(String input) {
-    return email.hasMatch(input);
-  }
+  final emailRegex = RegExp(
+    r'^[\w\.-]+@([\w-]+\.)+[a-zA-Z]{2,}$'
+  );
+  return emailRegex.hasMatch(input.trim());
+}
+
 }

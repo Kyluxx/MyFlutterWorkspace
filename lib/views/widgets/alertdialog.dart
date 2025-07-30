@@ -22,7 +22,6 @@ class CAlert extends StatelessWidget {
     this.barrierDismissible = true,
   });
 
-  // Panggil ini buat munculin dialog
   void show(BuildContext context) {
     showDialog(
       context: context,
